@@ -1,6 +1,43 @@
 # Qenumerable
 
-TODO: Write a gem description
+Allows you to query against collections.
+
+## Usage
+
+Let's get ourselves a collection to use:
+```ruby
+brandon = Person.new('brandon', 23, 'm')
+john    = Person.new('john',    42, 'm')
+jill    = Person.new('jill',    31, 'f')
+alice   = Person.new('alice',   50, 'f')
+zeke    = Person.new('zeke',    18, 'm')
+
+people = [brandon, john, jill, alice, zeke]
+```
+
+### Select Where
+
+Select all objects where params match:
+```ruby
+people.select_where name: /^j/
+# => [john, jill]
+```
+
+### Reject Where
+
+Reject all objects where params match:
+```ruby
+people.reject_where name: /^j/
+# => [brandon, alice, zeke]
+```
+
+### Find Where
+
+Finds the first object where params match:
+```ruby
+people.find_where name: /^j/
+# => john
+```
 
 ## Installation
 
@@ -16,13 +53,9 @@ Or install it yourself as:
 
     $ gem install qenumerable
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/qenumerable/fork )
+1. Fork it ( http://github.com/baweaver/qenumerable/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
