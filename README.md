@@ -6,6 +6,8 @@ Allows you to query against collections.
 
 Let's get ourselves a collection to use:
 ```ruby
+class Object; include QEnumerable end
+
 brandon = Person.new('brandon', 23, 'm')
 john    = Person.new('john',    42, 'm')
 jill    = Person.new('jill',    31, 'f')
