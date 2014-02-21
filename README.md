@@ -1,6 +1,6 @@
 # Qenumerable
 
-Allows you to query against collections.
+Allows you to query against collections using [Izzy's matches_all?](https://github.com/baweaver/izzy)
 
 ## Usage
 
@@ -23,6 +23,14 @@ Select all objects where params match:
 ```ruby
 people.select_where name: /^j/
 # => [john, jill]
+
+people.select_where(
+  age: [
+    (20..35),
+    -> a { a.odd? }
+  ]
+)
+# => [brandon]
 ```
 
 ### Reject Where
@@ -31,13 +39,21 @@ Reject all objects where params match:
 ```ruby
 people.reject_where name: /^j/
 # => [brandon, alice, zeke]
+
+people.reject_where(
+  age: [
+    (20..35),
+    -> a { a.odd? }
+  ]
+)
+# => [john, jill, alice, zeke]
 ```
 
 ### Find Where
 
 Finds the first object where params match:
 ```ruby
-people.find_where name: /^j/
+people.find_where name: /^j/, gender: 'm'
 # => john
 ```
 
